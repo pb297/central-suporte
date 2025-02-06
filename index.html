@@ -18,6 +18,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            padding-bottom: 60px;
         }
 
         .header {
@@ -62,7 +63,7 @@
         }
 
         .search-input {
-            width: 50%;
+            width: min(90%, 600px);
             padding: 12px 20px;
             border: 2px solid #e0e0e0;
             border-radius: 28px;
@@ -80,9 +81,9 @@
 
         .main-content {
             display: grid;
-            grid-template-columns: 1.2fr 1.6fr 1.2fr;
-            gap: 30px;
-            padding: 25px 50px;
+            grid-template-columns: 1fr 1.5fr 1fr;
+            gap: 25px;
+            padding: 25px 5%;
             max-width: 1500px;
             margin: 0 auto;
             flex: 1;
@@ -91,18 +92,18 @@
         .botoes-centrais {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            padding: 10px;
+            gap: 15px;
+            padding: 15px;
         }
 
         .botao {
             background: linear-gradient(135deg, #004a8d, #0066cc);
             color: white;
-            padding: 14px;
+            padding: 16px;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 0.9em;
+            font-size: 0.95em;
             transition: all 0.2s;
             text-align: center;
             text-decoration: none;
@@ -110,6 +111,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 60px;
         }
 
         .botao:hover {
@@ -123,16 +125,26 @@
             padding: 20px;
             border-radius: 16px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .video-box {
-            margin-bottom: 25px;
-        }
-
-        video {
-            width: 100%;
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
             border-radius: 12px;
-            border: 1px solid #eee;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .documentos {
@@ -144,7 +156,7 @@
         .doc-botao {
             background: #f8f9fa;
             border: 1px solid #ddd;
-            padding: 10px;
+            padding: 12px;
             border-radius: 8px;
             transition: all 0.2s;
             text-decoration: none;
@@ -171,26 +183,87 @@
             border-radius: 8px;
             box-shadow: 0 1px 6px rgba(0,0,0,0.04);
             border: 1px solid #eee;
+            transition: transform 0.2s;
         }
 
-        .link-item p {
-            margin: 0;
-            color: #666;
-            line-height: 1.4;
-            font-size: 0.9em;
+        .link-item:hover {
+            transform: translateY(-2px);
         }
 
         .link-item a {
             color: #004a8d;
             text-decoration: none;
             font-weight: 500;
-            word-break: break-all;
-            font-size: 0.9em;
+            word-break: break-word;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
+
+        .search-box {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .search-input {
+            width: 50%;
+            padding: 12px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 28px;
+            font-size: 1em;
+            transition: all 0.2s;
+            background: white url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23004a8d" width="20px" height="20px"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>') no-repeat 96% center;
+            background-size: 18px;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #004a8d;
+            box-shadow: 0 0 12px rgba(0,74,141,0.2);
+        }
+
+        .search-results {
+        max-width: 800px;
+        margin: 0 auto 30px;
+        padding: 0 20px;
+        display: none;
+    }
+
+    .result-item {
+        background: white;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .result-item:hover {
+        transform: translateX(5px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .result-title {
+        color: #004a8d;
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    .result-excerpt {
+        color: #666;
+        font-size: 0.9em;
+    }
+
+    .highlight {
+        background-color: #fff3cd;
+        padding: 2px 4px;
+        border-radius: 3px;
+    }
 
         .chatbot-btn {
             position: fixed;
-            bottom: 25px;
+            bottom: 85px;
             right: 25px;
             background: linear-gradient(135deg, #004a8d, #0066cc);
             color: white;
@@ -201,11 +274,7 @@
             font-size: 0.9em;
             box-shadow: 0 5px 15px rgba(0,0,0,0.12);
             transition: all 0.2s;
-        }
-
-        .chatbot-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 7px 18px rgba(0,0,0,0.18);
+            z-index: 1000;
         }
 
         footer {
@@ -214,8 +283,59 @@
             text-align: center;
             padding: 15px;
             font-size: 0.85em;
-            margin-top: auto;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
             border-radius: 12px 12px 0 0;
+            z-index: 1000;
+        }
+
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+
+            .sidebar {
+                width: 100%;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .botoes-centrais {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .botoes-centrais {
+                grid-template-columns: 1fr;
+            }
+
+            .botao {
+                min-height: 50px;
+                font-size: 0.9em;
+            }
+
+            .header {
+                height: auto;
+                padding: 1rem;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo {
+                width: 80px;
+            }
+
+            .titulo {
+                font-size: 1.4em;
+            }
+
+            .subtitulo {
+                font-size: 0.9em;
+            }
         }
     </style>
 </head>
@@ -224,22 +344,33 @@
         <img src="./Arquivos/Imagens/logo.png" alt="Logo da Empresa" class="logo">
         <div class="titulo-container">
             <h1 class="titulo">Base de Conhecimento</h1>
-            <h2 class="subtitulo">COL/GRP/DGP</h2>
+            <h2 class="subtitulo">Gerência de Relacionamento e Comercial</h2>
         </div>
     </header>
+
+    <div class="search-box">
+        <input type="text" class="search-input" id="searchInput" placeholder="Pesquise pelo assunto desejado">
+    </div>
+
+    <div id="searchResults" class="search-results"></div>
 
     <div class="main-content">
         <!-- Coluna Esquerda -->
         <div class="sidebar">
-            <div class="video-box">
+            <div class="video-container">
                 <video controls poster="./Arquivos/Imagens/postalis.png">
                     <source src="./Arquivos/Documentos/demandagbe.mp4" type="video/mp4">
                     Seu navegador não suporta vídeos.
                 </video>
             </div>
             <div class="documentos">
-                <h3>Documentos Frequentes</h3>
+                <h3>📄 Documentos Frequentes</h3>
                 <a href="./Arquivos/Documentos/Formulário de Reingresso.docx" class="doc-botao" download>Formulário de Reingresso</a>
+                <a href="./Arquivos/Documentos/FORMULARIO DE CANCELAMENTO - ICATU (2).docx" class="doc-botao" download>Cancelamento - Seguro de Vida</a>
+                <a href="./Arquivos/Documentos/Autorizacao_de_debito_em_conta_corrente_Seguro_Vida (1).docx" class="doc-botao" download>Débito em conta - Seguro de Vida</a>
+                <a href="./Arquivos/Documentos/FORMULARIO_MANUTENCAO_CONTRIBUICAO_5 (1).doc" class="doc-botao" download>Manutenção de contribuição - CAD</a>
+                <a href="./Arquivos/Documentos/FORMULARIO_SUSPENSÃO_CONTRIBUIÇÃO_set2019.doc" class="doc-botao" download>Suspensão de contribuição - CAD</a>
+                <a href="./Arquivos/Documentos/Formulario_dependentes_IR.doc" class="doc-botao" download>Dependente para IR - GBE</a>
             </div>
         </div>
 
@@ -249,7 +380,7 @@
             <a href="./Páginas/aposentadoria.html" class="botao" data-search="aposentadoria">Aposentadoria</a>
             <a href="./paginas/auxilio-doenca.html" class="botao" data-search="auxílio doença">Auxílio Doença</a>
             <a href="./Páginas/institutos.html" class="botao" data-search="institutos">Institutos</a>
-            <a href="./paginas/postalis-online.html" class="botao" data-search="postalis online">Postalis Online</a>
+            <a href="./Páginas/postalisonline.html" class="botao" data-search="postalis online">Postalis Online</a>
             <a href="./Páginas/arqgrc.html" class="botao" data-search="arquivos grc">Arquivos GRC</a>
             <a href="./paginas/pensao.html" class="botao" data-search="pensão e pecúlio">Pensão e Pecúlio</a>
             <a href="./paginas/seguro.html" class="botao" data-search="seguro de vida">Seguro de Vida</a>
@@ -259,68 +390,113 @@
 
         <!-- Coluna Direita -->
         <div class="sidebar">
-            <h3>Links Úteis</h3>
+            <h3>🔗 Links Úteis</h3>
             <div class="links-uteis">
                 <div class="link-item">
-                    <p>Meet Suporte:<br>
-                    <a href="https://meet.google.com/hrd-jziu-fza">https://meet.google.com/hrd-jziu-fza</a></p>
+                    <a href="https://meet.google.com/hrd-jziu-fza">Teams - Suporte</a>
                 </div>
                 <div class="link-item">
-                    <p>Meet Empréstimo:<br>
-                    <a href="https://meet.google.com/iuh-hrbg-vmf">https://meet.google.com/iuh-hrbg-vmf</a></p>
+                    <a href="https://meet.google.com/iuh-hrbg-vmf">Teams - Empréstimo</a>
                 </div>
                 <div class="link-item">
-                    <p>Bitrix:<br>
-                    <a href="https://postalis.bitrix24.com/stream/">https://postalis.bitrix24.com/stream/</a></p>
+                    <a href="https://postalis.bitrix24.com/stream/">Bitrix</a>
                 </div>
                 <div class="link-item">
-                    <p>Intranet:<br>
-                    <a href="http://intranet.postalis.org.br/">http://intranet.postalis.org.br/</a></p>
+                    <a href="http://intranet.postalis.org.br/">Intranet</a>
                 </div>
                 <div class="link-item">
-                    <p>RH Digital:<br>
-                    <a href="https://login.lg.com.br/login/postalis">https://login.lg.com.br/login/postalis</a></p>
+                    <a href="https://login.lg.com.br/login/postalis">RH Digital</a>
                 </div>
                 <div class="link-item">
-                    <p>Comunix Phone:<br>
-                    <a href="https://postalis.chat.comunix.tech/">https://postalis.chat.comunix.tech/</a></p>
+                    <a href="https://postalis.chat.comunix.tech/">Comunix Phone</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Botão do Chatbot -->
     <button class="chatbot-btn" onclick="window.open('https://typebot.co/postalis-pdv', '_blank')">
-        ChatBot
+        💬 Chatbot
     </button>
 
     <footer>
-        Contato: gabriel.talles@postalis.org.br
+        GRC/DGP | gabriel.talles@postalis.org.br
     </footer>
 
     <script>
+        // Dados de exemplo (substitua com seus artigos reais)
+        const articles = [
+            {
+                title: "Margem",
+                content: "Orientações sobre margem consignável",
+                path: "./Respostas/Emprestimo/margem.html",
+                keywords: "margem, desconto"
+            },
+            {
+                title: "Carteira fechada",
+                content: "Orientações quanto ao fechamento da carteira",
+                path: "./Respostas/Emprestimo/carteirafechada.html",
+                keywords: "carteira, fechada, carteira fechada"
+            },
+            {
+                title: "Ata - 06 de fevereiro",
+                content: "(06/02) Ata do alinhamento GRC/COP",
+                path: "./Arquivos/Drive GRC/Atas/fev-2025/06-02.html",
+                keywords: "carteira, fechada, carteira fechada"
+            },
+        ];
+    
         // Função de pesquisa
         document.getElementById('searchInput').addEventListener('input', function() {
             const searchTerm = this.value.toLowerCase();
-            const buttons = document.querySelectorAll('#botoesCentrais .botao');
-
-            buttons.forEach(button => {
-                const buttonText = button.getAttribute('data-search').toLowerCase();
-                if (buttonText.includes(searchTerm)) {
-                    button.style.display = 'flex';
-                } else {
-                    button.style.display = 'none';
-                }
-            });
+            const resultsContainer = document.getElementById('searchResults');
+            const buttonsContainer = document.getElementById('botoesCentrais');
+            
+            if (searchTerm.length > 0) {
+                buttonsContainer.style.display = 'none';
+                resultsContainer.style.display = 'block';
+                
+                const filteredArticles = articles.filter(article => {
+                    return article.title.toLowerCase().includes(searchTerm) ||
+                           article.content.toLowerCase().includes(searchTerm) ||
+                           article.keywords.toLowerCase().includes(searchTerm);
+                });
+    
+                displayResults(filteredArticles, searchTerm);
+            } else {
+                buttonsContainer.style.display = 'grid';
+                resultsContainer.style.display = 'none';
+            }
         });
-
-        // Redirecionamento ao clicar em um botão
-        document.querySelectorAll('#botoesCentrais .botao').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                window.location.href = this.href;
+    
+        function displayResults(results, term) {
+            const container = document.getElementById('searchResults');
+            container.innerHTML = '';
+            
+            if (results.length === 0) {
+                container.innerHTML = '<div class="result-item">Nenhum resultado encontrado</div>';
+                return;
+            }
+    
+            results.forEach(article => {
+                const div = document.createElement('div');
+                div.className = 'result-item';
+                div.innerHTML = `
+                    <div class="result-title">${highlightMatches(article.title, term)}</div>
+                    <div class="result-excerpt">${highlightMatches(article.content.substring(0, 100), term)}...</div>
+                    <div class="result-keywords">${highlightMatches(article.keywords, term)}</div>
+                `;
+                div.addEventListener('click', () => {
+                    window.location.href = article.path;
+                });
+                container.appendChild(div);
             });
-        });
+        }
+    
+        function highlightMatches(text, term) {
+            if (!term) return text;
+            const regex = new RegExp(`(${term})`, 'gi');
+            return text.replace(regex, '<span class="highlight">$1</span>');
+        }
     </script>
 </body>
 </html>
