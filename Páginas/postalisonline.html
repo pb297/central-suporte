@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postalis Online - Base de Conhecimento</title>
+    <link rel="icon" type="image/png" href="../Arquivos/Imagens/logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+        }
+
+        .header-emprestimo {
+            background: linear-gradient(rgba(0,74,141,0.9), rgba(0,74,141,0.95)), url('../Arquivos/Imagens/capa.png');
+            background-size: cover;
+            padding: 1.5rem 2rem;
+            height: 150px;
+            border-radius: 0 0 25px 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            color: white;
+        }
+
+        .artigo-tags {
+            margin-top: 8px; /* Espaço reduzido */
+            font-size: 0.7em; /* Fonte menor para tags */
+            color: #666;
+        }
+
+        .artigo-tags span {
+            background: #eef4fa;
+            padding: 2px 6px; /* Padding reduzido */
+            border-radius: 12px;
+            margin-right: 3px; /* Espaço entre tags reduzido */
+            display: inline-block;
+        }
+
+        .no-results {
+            text-align: center;
+            color: #666;
+            margin-top: 20px;
+            display: none;
+            grid-column: 1 / -1;
+        }
+
+        .titulo-secao {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .btn-voltar {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #004a8d, #0066cc);
+            color: white;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9em;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+            transition: all 0.2s;
+            z-index: 10;
+        }
+
+        .btn-voltar:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, #0066cc, #004a8d);
+        }
+
+        .search-box {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .search-input {
+            width: 60%;
+            padding: 14px 25px;
+            border: 2px solid #e0e0e0;
+            border-radius: 30px;
+            font-size: 1em;
+            transition: all 0.2s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #004a8d;
+            box-shadow: 0 0 12px rgba(0,74,141,0.2);
+        }
+
+        .conteudo-principal {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .categoria {
+            margin-bottom: 40px;
+        }
+
+        .categoria-titulo {
+            color: #004a8d;
+            border-bottom: 2px solid #004a8d;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+        }
+
+        .grid-artigos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
+        }
+
+        .artigo-card {
+        background: white;
+        padding: 12px; /* Reduzi o padding */
+        border-radius: 8px; /* Bordas menos arredondadas */
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08); /* Sombra mais suave */
+        transition: all 0.2s;
+        cursor: pointer;
+        text-decoration: none;
+        color: #333;
+        min-height: 80px; /* Altura reduzida */
+        }
+
+        .artigo-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+        }
+
+        .artigo-titulo {
+        color: #004a8d;
+        font-size: 0.95em; /* Tamanho da fonte reduzido */
+        margin-bottom: 5px;
+        line-height: 1.2; /* Melhora a legibilidade */
+        }
+
+        .roteiros-section {
+            background: #eef4fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+
+        .lista-roteiros {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .item-roteiro {
+            padding: 12px;
+            margin: 8px 0;
+            background: white;
+            text-decoration: none;
+            border-radius: 8px;
+            color: inherit;
+            display: block;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+
+        .item-roteiro::before {
+            content: "▹";
+            color: #004a8d;
+        }
+
+        .item-roteiro:hover {
+            transform: translateX(3px);
+            background-color: #f8f9fa;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            border-radius: 15px 15px 0 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="header-emprestimo">
+        <div class="titulo-secao">
+            <h1>Postalis Online</h1>
+            <p>Orientações para acesso ao Postalis Online</p>
+        </div>
+        <a href="../index.html" class="btn-voltar">Página inicial</a>
+    </header>
+
+    <div class="search-box">
+        <input type="text" id="searchInput" class="search-input" placeholder="Pesquisar">
+    </div>
+
+    <main class="conteudo-principal">
+        <div class="categoria">
+            <h2 class="categoria-titulo">Respostas</h2>
+            <div class="grid-artigos" id="artigosContainer">
+                <a href="../Respostas/Postalis Online/fale-conosco.html" class="artigo-card" data-tags="devolução, restituição, pagamento duplicado">
+                    <h3 class="artigo-titulo">Fale Conosco - Orientações para abertura de chamado</h3>
+                </a>
+
+                <a href="../Respostas/Postalis Online/gerar-senha.html" class="artigo-card" data-tags="judicial, teste, processo legal">
+                    <h3 class="artigo-titulo">Gerar senha de acesso ao Postalis Online</h3>
+                </a>
+
+                <a href="../Respostas/Postalis Online/acesso-pensionista.html" class="artigo-card" data-tags="carteira, fechada, carteira fechada">
+                    <h3 class="artigo-titulo">Acesso ao painel de pensionista</h3>
+                </a>
+
+                <a href="../Respostas/Postalis Online/contracheque.html" class="artigo-card" data-tags="inadimplência, inadimplente, atraso">
+                    <h3 class="artigo-titulo">Emissão de contracheque</h3>
+                </a>
+
+                <a href="../Respostas/Postalis Online/atualizacao-cadastral.html" class="artigo-card" data-tags="margem, desconto">
+                    <h3 class="artigo-titulo">Atualização cadastral</h3>
+                </a>
+
+                <a href="../Respostas/Postalis Online/atualizacao-beneficiarios.html" class="artigo-card" data-tags="suspensão, parcelas, descontos">
+                    <h3 class="artigo-titulo">Atualização de beneficiários</h3>
+                </a>
+            </div>
+            <div id="noResults" class="no-results">Nenhum resultado encontrado para sua pesquisa.</div>
+        </div>
+
+        <div class="roteiros-section">
+            <h2 class="categoria-titulo">Roteiros de Atendimento</h2>
+            <ul class="lista-roteiros">
+                <a href="../Respostas/Roteiros/concessao.html" class="item-roteiro">
+                    Não há roteiros disponíveis para essa página
+                </a>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        Contato: gabriel.talles@postalis.org.br
+    </footer>
+
+    <script>
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            const articles = document.querySelectorAll('#artigosContainer .artigo-card');
+            let hasResults = false;
+
+            articles.forEach(article => {
+                const title = article.querySelector('.artigo-titulo').textContent.toLowerCase();
+                const tags = article.getAttribute('data-tags').toLowerCase();
+                const tagList = tags.split(', ').map(tag => tag.trim());
+                
+                const match = title.includes(searchTerm) || 
+                             tagList.some(tag => tag.includes(searchTerm));
+
+                article.style.display = match ? 'block' : 'none';
+                if (match) hasResults = true;
+            });
+
+            document.getElementById('noResults').style.display = hasResults ? 'none' : 'block';
+        });
+    </script>
+</body>
+</html>
