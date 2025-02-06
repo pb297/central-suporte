@@ -21,56 +21,6 @@
             padding-bottom: 60px;
         }
 
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.6);
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto;
-    padding: 25px;
-    border: 1px solid #004a8d;
-    border-radius: 10px;
-    width: 70%;
-    max-width: 600px;
-    position: relative;
-    animation: modalOpen 0.3s;
-}
-
-@keyframes modalOpen {
-    from {transform: scale(0.9); opacity: 0}
-    to {transform: scale(1); opacity: 1}
-}
-
-.close {
-    color: #aaa;
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.close:hover {
-    color: #004a8d;
-}
-
-.modal-content h2 {
-    color: #004a8d;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 10px;
-}
-        
         .header {
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('./Arquivos/Imagens/capa.png');
             background-size: cover;
@@ -129,15 +79,8 @@
             box-shadow: 0 0 12px rgba(0,74,141,0.2);
         }
 
-.alert {
-    padding: 15px;
-    background: #fff3cd;
-    border-left: 4px solid #ffc107;
-    margin: 10px 0;
-    border-radius: 4px;
-}
-        
         .main-content {
+            position: relative;
             display: grid;
             grid-template-columns: 1fr 1.5fr 1fr;
             gap: 25px;
@@ -187,6 +130,64 @@
             flex-direction: column;
             gap: 20px;
         }
+
+        .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 25px;
+    border: 1px solid #004a8d;
+    border-radius: 10px;
+    width: 70%;
+    max-width: 600px;
+    position: relative;
+    animation: modalOpen 0.3s;
+}
+
+@keyframes modalOpen {
+    from {transform: scale(0.9); opacity: 0}
+    to {transform: scale(1); opacity: 1}
+}
+
+.alert {
+    padding: 15px;
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+
+.close {
+    color: #aaa;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #004a8d;
+}
+
+.modal-content h2 {
+    color: #004a8d;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
 
         .video-container {
             position: relative;
@@ -281,11 +282,18 @@
         }
 
         .search-results {
-        max-width: 800px;
-        margin: 0 auto 30px;
-        padding: 0 20px;
-        display: none;
-    }
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            max-width: 600px;
+            z-index: 100;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: none;
+        }
+
 
     .result-item {
         background: white;
@@ -407,13 +415,13 @@
         </div>
     </div>
 </div>
-    
+
 <body>
     <header class="header">
         <img src="./Arquivos/Imagens/logo.png" alt="Logo da Empresa" class="logo">
         <div class="titulo-container">
             <h1 class="titulo">Base de Conhecimento</h1>
-            <h2 class="subtitulo">Gerência de Relacionamento e Comercial</h2>
+            <h2 class="subtitulo">COL/GRP/DGP</h2>
         </div>
     </header>
 
@@ -488,7 +496,7 @@
     </button>
 
     <footer>
-        GRC/DGP | gabriel.talles@postalis.org.br
+        Central de Atendimento - COL/GRC/DGP | Código por: gabriel.talles@postalis.org.br
     </footer>
 
     <script>
@@ -506,36 +514,27 @@
                 path: "./Respostas/Emprestimo/carteirafechada.html",
                 keywords: "carteira, fechada, carteira fechada"
             },
-            {
-                title: "Ata - 06 de fevereiro",
-                content: "(06/02) Ata do alinhamento GRC/COP",
-                path: "./Arquivos/Drive GRC/Atas/fev-2025/06-02.html",
-                keywords: "carteira, fechada, carteira fechada"
-            },
         ];
     
         // Função de pesquisa
         document.getElementById('searchInput').addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            const resultsContainer = document.getElementById('searchResults');
-            const buttonsContainer = document.getElementById('botoesCentrais');
-            
-            if (searchTerm.length > 0) {
-                buttonsContainer.style.display = 'none';
-                resultsContainer.style.display = 'block';
-                
-                const filteredArticles = articles.filter(article => {
-                    return article.title.toLowerCase().includes(searchTerm) ||
-                           article.content.toLowerCase().includes(searchTerm) ||
-                           article.keywords.toLowerCase().includes(searchTerm);
-                });
+    const searchTerm = this.value.toLowerCase();
+    const resultsContainer = document.getElementById('searchResults');
     
-                displayResults(filteredArticles, searchTerm);
-            } else {
-                buttonsContainer.style.display = 'grid';
-                resultsContainer.style.display = 'none';
-            }
+    if (searchTerm.length > 0) {
+        resultsContainer.style.display = 'block';
+        
+        const filteredArticles = articles.filter(article => {
+            return article.title.toLowerCase().includes(searchTerm) ||
+                   article.content.toLowerCase().includes(searchTerm) ||
+                   article.keywords.toLowerCase().includes(searchTerm);
         });
+
+        displayResults(filteredArticles, searchTerm);
+    } else {
+        resultsContainer.style.display = 'none';
+    }
+});
     
         function displayResults(results, term) {
             const container = document.getElementById('searchResults');
@@ -567,7 +566,7 @@
             return text.replace(regex, '<span class="highlight">$1</span>');
         }
 
-const modal = {
+        const modal = {
     init: () => {
         // Elementos do DOM
         modal.element = document.getElementById('customModal');
@@ -595,7 +594,9 @@ const modal = {
 // Inicialização
 document.addEventListener('DOMContentLoaded', modal.init);
 
-        
+// Exemplo de uso - pode ser chamado de qualquer lugar:
+// modal.open('<p>Conteúdo customizado aqui!</p>');
+
 window.onload = () => {
     modal.open(`
         <div class="alert">
