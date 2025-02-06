@@ -21,6 +21,56 @@
             padding-bottom: 60px;
         }
 
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 25px;
+    border: 1px solid #004a8d;
+    border-radius: 10px;
+    width: 70%;
+    max-width: 600px;
+    position: relative;
+    animation: modalOpen 0.3s;
+}
+
+@keyframes modalOpen {
+    from {transform: scale(0.9); opacity: 0}
+    to {transform: scale(1); opacity: 1}
+}
+
+.close {
+    color: #aaa;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #004a8d;
+}
+
+.modal-content h2 {
+    color: #004a8d;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+        
         .header {
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('./Arquivos/Imagens/capa.png');
             background-size: cover;
@@ -79,6 +129,14 @@
             box-shadow: 0 0 12px rgba(0,74,141,0.2);
         }
 
+.alert {
+    padding: 15px;
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+        
         .main-content {
             display: grid;
             grid-template-columns: 1fr 1.5fr 1fr;
@@ -339,6 +397,17 @@
         }
     </style>
 </head>
+
+<div id="customModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Atenção</h2>
+        <div id="modalText">
+            <!-- Conteúdo dinâmico será inserido aqui -->
+        </div>
+    </div>
+</div>
+    
 <body>
     <header class="header">
         <img src="./Arquivos/Imagens/logo.png" alt="Logo da Empresa" class="logo">
@@ -497,6 +566,43 @@
             const regex = new RegExp(`(${term})`, 'gi');
             return text.replace(regex, '<span class="highlight">$1</span>');
         }
+
+const modal = {
+    init: () => {
+        // Elementos do DOM
+        modal.element = document.getElementById('customModal');
+        modal.closeBtn = document.querySelector('.close');
+        
+        // Event Listeners
+        modal.closeBtn.onclick = modal.close;
+        window.onclick = (event) => {
+            if (event.target === modal.element) {
+                modal.close();
+            }
+        }
+    },
+
+    open: (content) => {
+        document.getElementById('modalText').innerHTML = content;
+        modal.element.style.display = 'block';
+    },
+
+    close: () => {
+        modal.element.style.display = 'none';
+    }
+};
+
+// Inicialização
+document.addEventListener('DOMContentLoaded', modal.init);
+
+        
+window.onload = () => {
+    modal.open(`
+        <div class="alert">
+            Sistema em construção. Pode apresentar erros pontuais ou informações incompletas. 
+        </div>
+    `);
+};
     </script>
 </body>
 </html>
