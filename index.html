@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base de Conhecimento - COL/GRP/DGP</title>
+    <title>Central de Suporte</title>
     <link rel="icon" type="image/png" href="./Arquivos/Imagens/logo.png">
     <style>
         * {
@@ -420,8 +420,8 @@
     <header class="header">
         <img src="./Arquivos/Imagens/logo.png" alt="Logo da Empresa" class="logo">
         <div class="titulo-container">
-            <h1 class="titulo">Base de Conhecimento</h1>
-            <h2 class="subtitulo">COL/GRP/DGP</h2>
+            <h1 class="titulo">Central de Suporte</h1>
+            <h2 class="subtitulo">Gerência de Relacionamento e Comercial</h2>
         </div>
     </header>
 
@@ -455,14 +455,14 @@
         <div class="botoes-centrais" id="botoesCentrais">
             <a href="./Páginas/emprestimo.html" class="botao" data-search="empréstimo">Empréstimo</a>
             <a href="./Páginas/aposentadoria.html" class="botao" data-search="aposentadoria">Aposentadoria</a>
-            <a href="./paginas/auxilio-doenca.html" class="botao" data-search="auxílio doença">Auxílio Doença</a>
+            <a href="./Páginas/bad.html" class="botao" data-search="auxílio doença">Auxílio Doença</a>
             <a href="./Páginas/institutos.html" class="botao" data-search="institutos">Institutos</a>
             <a href="./Páginas/postalisonline.html" class="botao" data-search="postalis online">Postalis Online</a>
-            <a href="./Páginas/arqgrc.html" class="botao" data-search="arquivos grc">Arquivos GRC</a>
-            <a href="./paginas/pensao.html" class="botao" data-search="pensão e pecúlio">Pensão e Pecúlio</a>
-            <a href="./paginas/seguro.html" class="botao" data-search="seguro de vida">Seguro de Vida</a>
-            <a href="./paginas/imposto.html" class="botao" data-search="imposto de renda">Imposto de Renda</a>
-            <a href="./paginas/outros.html" class="botao" data-search="outros assuntos">Outros Assuntos</a>
+            <a href="./Páginas/arqgrc.html" class="botao" data-search="arquivos grc">Base de Conhecimento</a>
+            <a href="./Páginas/pensao.html" class="botao" data-search="pensão e pecúlio">Pensão e Pecúlio</a>
+            <a href="./Páginas/seguro.html" class="botao" data-search="seguro de vida">Seguro de Vida</a>
+            <a href="./Páginas/ir.html" class="botao" data-search="imposto de renda">Imposto de Renda</a>
+            <a href="./Páginas/outros.html" class="botao" data-search="outros assuntos">Outros Assuntos</a>
         </div>
 
         <!-- Coluna Direita -->
@@ -492,11 +492,11 @@
     </div>
 
     <button class="chatbot-btn" onclick="window.open('https://typebot.co/postalis-pdv', '_blank')">
-        💬 Chatbot
+        💬
     </button>
 
     <footer>
-        Central de Atendimento - COL/GRC/DGP | Código por: gabriel.talles@postalis.org.br
+        GRC/DGP | gabriel.talles@postalis.org.br
     </footer>
 
     <script>
@@ -513,6 +513,12 @@
                 content: "Orientações quanto ao fechamento da carteira",
                 path: "./Respostas/Emprestimo/carteirafechada.html",
                 keywords: "carteira, fechada, carteira fechada"
+            },
+            {
+                title: "Fale Conosco",
+                content: "Orientações para abertura de chamado",
+                path: "./Respostas/Postalis Online/fale-conosco.html",
+                keywords: "fc, sb3"
             },
         ];
     
@@ -597,12 +603,12 @@ document.addEventListener('DOMContentLoaded', modal.init);
 // Exemplo de uso - pode ser chamado de qualquer lugar:
 // modal.open('<p>Conteúdo customizado aqui!</p>');
 
-window.onload = () => {
+ window.onload = () => {
     modal.open(`
         <div class="alert">
-            Sistema em construção. Pode apresentar erros pontuais ou informações incompletas. 
+            Sistema em construção. Algumas páginas podem estar incompletas ou apresentando erros que serão corrigidos com o tempo 
         </div>
-    `);
+  `);
 };
     </script>
 </body>
