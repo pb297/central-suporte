@@ -6,6 +6,8 @@
     <title>Quita Fácil - Empréstimo</title>
     <link rel="icon" type="image/png" href="../../Arquivos/Imagens/logo.png">
     <style>
+        /* Estilos anteriores mantidos e novos adicionados */
+      
         * {
             margin: 0;
             padding: 0;
@@ -53,29 +55,11 @@
             background: linear-gradient(135deg, #0066cc, #004a8d);
         }
 
-        .metadados-artigo {
-            background: #eef4fa;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            font-size: 0.9em;
-            color: #444;
-        }
-
-        .metadados-artigo p {
-            margin: 5px 0;
-        }
-
         .conteudo-artigo {
             max-width: 800px;
             margin: 30px auto;
             padding: 0 20px;
             flex: 1;
-        }
-
-        .destaque-vermelho {
-            color: #ff0000;
-            font-weight: bold;
         }
 
         .card-artigo {
@@ -93,14 +77,56 @@
             padding-bottom: 10px;
         }
 
+        /* Novos estilos para múltiplas entradas */
+        .entrada-artigo {
+            margin-bottom: 40px;
+            border-left: 3px solid #004a8d;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .metadados-artigo {
+            background: #eef4fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            color: #444;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .metadados-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .metadados-item strong {
+            white-space: nowrap;
+        }
+
         .texto-artigo {
             color: #444;
             line-height: 1.6;
             font-size: 1em;
+            position: relative;
         }
 
         .texto-artigo p {
             margin-bottom: 20px;
+        }
+
+        .destaque-vermelho {
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        .versao-histórico {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dashed #ccc;
         }
 
         footer {
@@ -116,6 +142,53 @@
             border-radius: 12px 12px 0 0;
             z-index: 1000;
         }
+
+        .container-entradas {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .entrada-artigo {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border: 1px solid #e0e0e0;
+        }
+
+        .titulo-entrada {
+            color: #004a8d;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .metadados-artigo {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 0.85em;
+            color: #666;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .texto-artigo {
+            line-height: 1.6;
+            color: #444;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .container-entradas {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -127,36 +200,73 @@
         <div class="card-artigo">
             <h2 class="titulo-artigo">Campanha Quita Fácil</h2>
             
-            <!-- Adição dos metadados -->
-            <div class="metadados-artigo">
-                <p><strong>Data da última alteração:</strong> 11/02/2025</p>
-                <p><strong>Autor:</strong> Gabriel Talles de Magalhães</p>
-            </div>
-            
-            <div class="texto-artigo">
-                <p>Prezado(a),</p>
+            <div class="container-entradas">
+                <!-- Entrada 1 -->
+                <div class="entrada-artigo">
+                    <h3 class="titulo-entrada">Participante ativo</h3>
+                    <div class="metadados-artigo">
+                        <div><strong>Data:</strong> 11/02/2025</div>
+                        <div><strong>Autor:</strong> Gabriel Talles de Magalhães</div>
+                    </div>
+                    <div class="texto-artigo">
+                        <p>Prezado(a),</p>
                 
-                <p>Bom dia/Boa tarde/Boa noite! Espero que esteja bem. Me chamo XX e falo da Central de Atendimento do Postalis.</p>
-                
-                <p>A campanha Quita Fácil é uma campanha lançada pelo Postalis para oferecer aos participantes ativos e pensionistas a oportunidade de quitar dívidas de empréstimos, independente do tempo de atraso. A campanha prevê desconto de 100% nos encargos de inadimplência e nos honorários advocatícios, caso o contrato esteja em processo de cobrança judicial. O boleto de quitação com desconto pode ser emitido no autoatendimento seguindo as orientações listadas abaixo:</p>
-                
-                <p>1. Acesse o autoatendimento através do seguinte link: https://bit.ly/3XIzGNM<br>2. Faça login com sua matrícula, CPF e senha;<br>3. Nos menus à esquerda, selecione a opção "Empréstimos" e depois "Gerar boleto de quitação";<br>4. Selecione a data de vencimento que tem interesse e clique em "Simular quitação";<br>5. Verifique o "saldo inadimplente", o desconto no campo "campanha de desconto" e o valor a ser pago no "saldo inad";<br>6. Em operação, selecione a primeira opção que é uma seta virada para baixo. Desta forma você fará download do boleto.</p>
+                        <p>Bom dia/Boa tarde/Boa noite! Espero que esteja bem. Me chamo XX e falo da Central de Atendimento do Postalis.</p>
+                        
+                        <p>A campanha Quita Fácil é uma campanha lançada pelo Postalis para oferecer aos participantes ativos e pensionistas a oportunidade de quitar dívidas de empréstimos, independente do tempo de atraso. A campanha prevê desconto de 100% nos encargos de inadimplência e nos honorários advocatícios, caso o contrato esteja em processo de cobrança judicial. O boleto de quitação com desconto pode ser emitido no autoatendimento seguindo as orientações listadas abaixo:</p>
+                        
+                        <p>1. Acesse o autoatendimento através do seguinte link: https://bit.ly/3XIzGNM<br>2. Faça login com sua matrícula, CPF e senha;<br>3. Nos menus à esquerda, selecione a opção "Empréstimos" e depois "Gerar boleto de quitação";<br>4. Selecione a data de vencimento que tem interesse e clique em "Simular quitação";<br>5. Verifique o "saldo inadimplente", o desconto no campo "campanha de desconto" e o valor a ser pago no "saldo inad";<br>6. Em operação, selecione a primeira opção que é uma seta virada para baixo. Desta forma você fará download do boleto.</p>
+        
+                        <p>Se preferir, poderá também entrar em contato diretamente com a Central de Atendimento pelo 0800 879 0300 ou agendar uma ligação seguindo as orientações listadas abaixo:</p>
+        
+                        <p>1. Acesse Postalis Online<br>2. Clique em ‘agendamento’<br>3. Informe a sua matrícula e clique em ‘continuar’<br>4. Preencha os dados de contato<br>5. Selecione: Central de Atendimento e assunto<br>6. Clique em ‘agendar’ e depois ‘confirmar’</p>
+        
+                        <p>Atenção: A campanha ficará ativa somente até o dia 31 de março. Saiba mais em: https://www.postalis.org.br/postalis-lanca-campanha-de-quitacao-de-emprestimos/</p>
+                        
+                        <p>Atenciosamente,</p>
+                        
+                        <p>
+                            <strong>Postalis – Instituto de Previdência Complementar</strong><br>
+                            Central de Atendimento: 0800 879 0300<br>
+                            Fale Conosco: <a href="https://goo.gl/ent61X">https://goo.gl/ent61X</a><br>
+                            Visite no YouTube – Descomplica Postalis: <a href="https://goo.gl/qHwFQL">https://goo.gl/qHwFQL</a>
+                        </p>
+                    </div>
+                </div>
 
-                <p>Se preferir, poderá também entrar em contato diretamente com a Central de Atendimento pelo 0800 879 0300 ou agendar uma ligação seguindo as orientações listadas abaixo:</p>
-
-                <p>1. Acesse Postalis Online<br>2. Clique em ‘agendamento’<br>3. Informe a sua matrícula e clique em ‘continuar’<br>4. Preencha os dados de contato<br>5. Selecione: Central de Atendimento e assunto<br>6. Clique em ‘agendar’ e depois ‘confirmar’</p>
-
-                <p>Atenciosamente,</p>
+                <!-- Entrada 2 -->
+                <div class="entrada-artigo">
+                    <h3 class="titulo-entrada">Participante judicializado</h3>
+                    <div class="metadados-artigo">
+                        <div><strong>Data:</strong> 12/02/2025</div>
+                        <div><strong>Autor:</strong> Gabriel Talles de Magalhães</div>
+                    </div>
+                    <div class="texto-artigo">
+                        <p>Prezado(a),</p>
                 
-                <p>
-                    <strong>Postalis – Instituto de Previdência Complementar</strong><br>
-                    Central de Atendimento: 0800 879 0300<br>
-                    Fale Conosco: <a href="https://goo.gl/ent61X">https://goo.gl/ent61X</a><br>
-                    Visite no YouTube – Descomplica Postalis: <a href="https://goo.gl/qHwFQL">https://goo.gl/qHwFQL</a>
-                </p>
+                        <p>Bom dia/Boa tarde/Boa noite! Espero que esteja bem. Me chamo XX e falo da Central de Atendimento do Postalis.</p>
+                        
+                        <p>Verifiquei que seu contrato está em processo de cobrança judicial. Neste caso, é necessário que entre em contato com o escritório DDL através do telefone (11) 96382-1515 ou pelo e-mail acordo.postalis@ddllaw.com.br e solicite uma proposta de quitação através da campanha em andamento.</p>
+                                
+                        <p>Caso persista alguma dúvida, agende um atendimento através do Postalis Online seguindo as orientações abaixo ou entre em contato conosco por telefone.</p>
+        
+                        <p>1. Acesse Postalis Online<br>2. Clique em ‘agendamento’<br>3. Informe a sua matrícula e clique em ‘continuar’<br>4. Preencha os dados de contato<br>5. Selecione: Central de Atendimento e assunto<br>6. Clique em ‘agendar’ e depois ‘confirmar’</p>
+        
+                        <p>ATENÇÃO: A campanha ficará ativa somente até o dia 31 de março. Saiba mais em: https://www.postalis.org.br/postalis-lanca-campanha-de-quitacao-de-emprestimos/</p>
+                        
+                        <p>Atenciosamente,</p>
+                        
+                        <p>
+                            <strong>Postalis – Instituto de Previdência Complementar</strong><br>
+                            Central de Atendimento: 0800 879 0300<br>
+                            Fale Conosco: <a href="https://goo.gl/ent61X">https://goo.gl/ent61X</a><br>
+                            Visite no YouTube – Descomplica Postalis: <a href="https://goo.gl/qHwFQL">https://goo.gl/qHwFQL</a>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
-    </main> 
+    </main>
 
     <footer> 
         GRC/DGP | gabriel.talles@postalis.org.br
