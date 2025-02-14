@@ -98,22 +98,22 @@
         }
 
         .botao {
-            background: linear-gradient(135deg, #004a8d, #0066cc);
-            color: white;
-            padding: 16px;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 0.95em;
-            transition: all 0.2s;
-            text-align: center;
-            text-decoration: none;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 60px;
-        }
+    background: linear-gradient(135deg, #004a8d, #0066cc);
+    color: white;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 0.95em;
+    transition: all 0.2s;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px;
+}
 
         .chatbot-btn {
         position: fixed;
@@ -165,10 +165,11 @@
         }
 
         .botao:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            background: linear-gradient(135deg, #0066cc, #004a8d);
-        }
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    background: linear-gradient(135deg, #FFD700, #FFA500); /* Gradiente amarelo */
+    color: #333; /* Cor do texto alterada para melhor contraste */
+}
 
         .sidebar {
             background: white;
@@ -324,6 +325,23 @@
             background-size: 18px;
         }
 
+        .result-item.no-results {
+            background: #fff0f0;
+            border-left: 4px solid #ff4444;
+            color: #660000;
+        }
+
+        .search-term {
+            color: #cc0000;
+            font-weight: 500;
+        }
+
+        .search-suggestions {
+            font-size: 0.9em;
+            margin-top: 8px;
+            color: #888;
+        }
+
         .search-input:focus {
             outline: none;
             border-color: #004a8d;
@@ -364,6 +382,67 @@
         font-weight: 500;
         margin-bottom: 5px;
     }
+
+/* Menu Superior */
+.menu-superior {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.dropbtn {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 8px 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dropbtn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #004a8d;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: rgba(255, 255, 255, 0.3);
+}
 
     .result-excerpt {
         color: #666;
@@ -464,6 +543,15 @@
 
     <div id="searchResults" class="search-results"></div>
 
+    <div class="menu-superior">
+        <div class="dropdown">
+            <button class="dropbtn">▼</button>
+            <div class="dropdown-content">
+                <a href="./notas-att.html">Atualizações</a>
+            </div>
+        </div>
+    </div>
+
     <div class="main-content">
         <!-- Coluna Esquerda -->
         <div class="sidebar">
@@ -541,155 +629,139 @@
     </div>
 
     <script>
-        // Dados de exemplo (substitua com seus artigos reais)
-        const articles = [
-            {
-                title: "Margem",
-                content: "Orientações sobre margem consignável",
-                path: "./Respostas/Emprestimo/margem.html",
-                keywords: "margem, desconto"
-            },
-            {
-                title: "Carteira fechada",
-                content: "Orientações quanto ao fechamento da carteira",
-                path: "./Respostas/Emprestimo/carteirafechada.html",
-                keywords: "carteira, fechada, carteira fechada"
-            },
-            {
-                title: "Fale Conosco",
-                content: "Orientações para abertura de chamado",
-                path: "./Respostas/Postalis Online/fale-conosco.html",
-                keywords: "fc, sb3"
-            },
-            {
-                title: "Quita Fácil",
-                content: "Informações sobre a campanha Quita Fácil",
-                path: "./Respostas/Emprestimo/quita-facil.html",
-                keywords: "quita fácil, quitação"
-            },
-        ];
-    
-        // Função de pesquisa
-        document.getElementById('searchInput').addEventListener('input', function() {
-    const searchTerm = this.value.toLowerCase();
-    const resultsContainer = document.getElementById('searchResults');
-    
-    if (searchTerm.length > 0) {
-        resultsContainer.style.display = 'block';
-        
-        const filteredArticles = articles.filter(article => {
-            return article.title.toLowerCase().includes(searchTerm) ||
-                   article.content.toLowerCase().includes(searchTerm) ||
-                   article.keywords.toLowerCase().includes(searchTerm);
-        });
-
-        displayResults(filteredArticles, searchTerm);
-    } else {
-        resultsContainer.style.display = 'none';
-    }
-});
-    
-        function displayResults(results, term) {
-            const container = document.getElementById('searchResults');
-            container.innerHTML = '';
-            
-            if (results.length === 0) {
-                container.innerHTML = '<div class="result-item">Nenhum resultado encontrado</div>';
-                return;
-            }
-    
-            results.forEach(article => {
-                const div = document.createElement('div');
-                div.className = 'result-item';
-                div.innerHTML = `
-                    <div class="result-title">${highlightMatches(article.title, term)}</div>
-                    <div class="result-excerpt">${highlightMatches(article.content.substring(0, 100), term)}...</div>
-                    <div class="result-keywords">${highlightMatches(article.keywords, term)}</div>
-                `;
-                div.addEventListener('click', () => {
-                    window.location.href = article.path;
-                });
-                container.appendChild(div);
-            });
-        }
-    
-        function highlightMatches(text, term) {
-            if (!term) return text;
-            const regex = new RegExp(`(${term})`, 'gi');
-            return text.replace(regex, '<span class="highlight">$1</span>');
-        }
-
+        // Funções do Modal
         const modal = {
-    init: () => {
-        // Elementos do DOM
-        modal.element = document.getElementById('customModal');
-        modal.closeBtn = document.querySelector('.close');
-        
-        // Event Listeners
-        modal.closeBtn.onclick = modal.close;
-        window.onclick = (event) => {
-            if (event.target === modal.element) {
-                modal.close();
+            init: () => {
+                modal.element = document.getElementById('customModal');
+                modal.closeBtn = document.querySelector('.close');
+                
+                modal.closeBtn.onclick = modal.close;
+                window.onclick = (event) => {
+                    if (event.target === modal.element) modal.close();
+                }
+            },
+    
+            open: (content) => {
+                document.getElementById('modalText').innerHTML = content;
+                modal.element.style.display = 'block';
+            },
+    
+            close: () => {
+                modal.element.style.display = 'none';
             }
+        };
+    
+        // Funções do Chatbot
+        const chat = {
+            init: () => {
+                chat.button = document.getElementById('chatbotButton');
+                chat.container = document.getElementById('chatbotContainer');
+                chat.isOpen = false;
+    
+                chat.button.addEventListener('click', chat.toggle);
+                document.addEventListener('click', chat.closeOnClickOutside);
+            },
+    
+            toggle: () => {
+                chat.isOpen = !chat.isOpen;
+                chat.container.style.display = chat.isOpen ? 'block' : 'none';
+                chat.button.textContent = chat.isOpen ? 'Fechar' : '*';
+                chat.button.classList.toggle('active', chat.isOpen);
+            },
+    
+            closeOnClickOutside: (event) => {
+                if (chat.isOpen && 
+                   !chat.container.contains(event.target) && 
+                   event.target !== chat.button) {
+                    chat.toggle();
+                }
+            }
+        };
+    // Pesquisa
+    const search = {
+    articles: [],
+    
+    init: async () => {
+        try {
+            const response = await fetch('./artigos.json');
+            if (!response.ok) throw new Error('Erro ao carregar artigos');
+            const data = await response.json();
+            
+            // Transforma a estrutura de temas em array único
+            search.articles = Object.values(data.temas).flat();
+            
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', search.handleInput);
+            searchInput.addEventListener('keyup', search.clearSearch);
+        } catch (error) {
+            modal.open(`<div class="alert">⚠️ Erro na base de conhecimento: ${error.message}</div>`);
         }
     },
 
-    open: (content) => {
-        document.getElementById('modalText').innerHTML = content;
-        modal.element.style.display = 'block';
+    handleInput: function(e) {
+        const term = e.target.value.trim().toLowerCase();
+        const resultsContainer = document.getElementById('searchResults');
+        
+        if (!term) {
+            resultsContainer.style.display = 'none';
+            return;
+        }
+
+        const results = search.articles.filter(article => 
+            `${article.title} ${article.content} ${article.keywords}`
+            .toLowerCase().includes(term)
+        );
+        
+        search.displayResults(results, term, resultsContainer);
     },
 
-    close: () => {
-        modal.element.style.display = 'none';
+    displayResults: (results, term, container) => {
+        container.innerHTML = results.length ? 
+            results.map(article => `
+                <div class="result-item">
+                    <div class="result-title">${search.highlight(article.title, term)}</div>
+                    <div class="result-excerpt">${search.highlight(article.content, term)}</div>
+                    <div class="result-keywords">${search.highlight(article.keywords, term)}</div>
+                </div>
+            `).join('') : `
+                <div class="result-item no-results">
+                    Nenhum resultado encontrado para "<span class="search-term">${term}</span>"
+                    <div class="search-suggestions">
+                        Tente buscar por termos relacionados ou verifique a ortografia
+                    </div>
+                </div>
+            `;
+
+        container.style.display = results.length ? 'block' : 'none';
+    },
+
+    clearSearch: (e) => {
+        if (e.target.value === '') {
+            document.getElementById('searchResults').style.display = 'none';
+        }
+    },
+
+    highlight: (text, term) => {
+        return term ? text.replace(
+            new RegExp(`(${term})`, 'gi'), 
+            '<span class="highlight">$1</span>'
+        ) : text;
     }
 };
 
-// Inicialização
-document.addEventListener('DOMContentLoaded', modal.init);
-
-// Exemplo de uso - pode ser chamado de qualquer lugar:
-// modal.open('<p>Conteúdo customizado aqui!</p>');
-
- window.onload = () => {
-    modal.open(`
-        <div class="alert">
-        Sistema em construção. Algumas páginas podem estar incompletas ou apresentando erros que serão corrigidos com o tempo 
-       </div>
-    `);
-};
-
-        // Controle do chatbot
-        const chatbotButton = document.getElementById('chatbotButton');
-        const chatbotContainer = document.getElementById('chatbotContainer');
-        let isChatOpen = false;
-
-        chatbotButton.addEventListener('click', () => {
-            isChatOpen = !isChatOpen;
+        // Inicialização Geral
+        document.addEventListener('DOMContentLoaded', () => {
+            modal.init();
+            chat.init();
+            search.init();
             
-            if(isChatOpen) {
-                chatbotContainer.style.display = 'block';
-                chatbotButton.classList.add('active');
-                chatbotButton.textContent = 'Fechar';
-                // Rolagem suave para o botão
-                setTimeout(() => {
-                    chatbotContainer.scrollIntoView({behavior: 'smooth', block: 'end'});
-                }, 300);
-            } else {
-                chatbotContainer.style.display = 'none';
-                chatbotButton.classList.remove('active');
-                chatbotButton.textContent = '*';
-            }
+            // Mensagem Inicial
+            modal.open(`
+                <div class="alert">
+                    O sistema atual está em desenvolvimento e aprimoramento contínuo, e, por isso, ele pode apresentar falhas ou informações incompletas. 
+                </div>
+            `);
         });
-
-        // Opcional: Fechar o chat ao clicar fora
-        document.addEventListener('click', (event) => {
-            if(isChatOpen && 
-               !chatbotContainer.contains(event.target) && 
-               event.target !== chatbotButton) {
-                chatbotButton.click();
-            }
-        });
-
     </script>
 </body>
 </html>

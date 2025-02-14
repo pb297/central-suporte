@@ -1,0 +1,40 @@
+{
+    "temas": {
+      "empréstimo": [
+        {
+          "title": "Margem",
+          "content": "Orientações sobre margem consignável",
+          "path": "./Respostas/Emprestimo/margem.html",
+          "keywords": "margem, desconto"
+        },
+        {
+          "title": "Carteira fechada",
+          "content": "Orientações quanto ao fechamento da carteira",
+          "path": "./Respostas/Emprestimo/carteirafechada.html",
+          "keywords": "carteira, fechada, carteira fechada"
+        }
+      ],
+      "aposentadoria": [
+        {
+          "title": "Revisão de benefício",
+          "content": "Como solicitar revisão de aposentadoria",
+          "path": "./Respostas/Aposentadoria/revisao.html",
+          "keywords": "revisão, cálculo, benefício"
+        },
+        {
+          "title": "Documentos necessários",
+          "content": "Lista de documentos para aposentadoria",
+          "path": "./Respostas/Aposentadoria/documentos.html",
+          "keywords": "documentos, requerimento"
+        }
+      ],
+      "fale-conosco": [
+        {
+          "title": "Abertura de chamado",
+          "content": "Como abrir um chamado no sistema",
+          "path": "./Respostas/Postalis Online/fale-conosco.html",
+          "keywords": "chamado, suporte, ajuda"
+        }
+      ]
+    }
+  }
