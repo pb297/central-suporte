@@ -28,7 +28,7 @@
         }
 
         .header {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../Arquivos/Imagens/capa.png');
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://github.com/pb297/central-suporte/blob/main/Arquivos/Imagens/capa.png?raw=true');
             background-size: cover;
             padding: 1rem 2rem;
             height: 180px;
@@ -416,7 +416,7 @@
 </head>
 <body>
     <header class="header">
-        <img src="../Arquivos/Imagens/logo.png" alt="Logo da Empresa" class="logo">
+        <img src="https://github.com/pb297/central-suporte/blob/main/Arquivos/Imagens/logo.png?raw=true" alt="Logo da Empresa" class="logo">
         <div class="titulo-container">
             <h1 class="titulo">Central de Suporte</h1>
             <h2 class="subtitulo">Painel Administrativo</h2>
@@ -430,7 +430,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
                     <path d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z"/>
                 </svg>
-                Novo Artigo
+                Nova publicação
             </a>
         </div>
 
@@ -442,7 +442,7 @@
         <div class="modal-content">
             <span class="close" id="closeModal">&times;</span>
             <h2>Confirmação de Exclusão</h2>
-            <p>Tem certeza que deseja excluir o artigo <strong id="tituloArtigo"></strong>?</p>
+            <p>Tem certeza que deseja excluir a publicação <strong id="tituloArtigo"></strong>?</p>
             <div class="form-group">
                 <label for="motivoExclusao">Motivo da exclusão:</label>
                 <textarea id="motivoExclusao" placeholder="Descreva o motivo da exclusão..."></textarea>
@@ -536,10 +536,10 @@
                 enviarEmailExclusao(dadosExclusao);
                 
                 // Aqui seria a lógica para excluir o artigo
-                console.log('Artigo excluído:', dadosExclusao);
+                console.log('Publicação excluída:', dadosExclusao);
                 
                 // Mostrar notificação
-                notificacao.mostrar('Artigo excluído com sucesso!');
+                notificacao.mostrar('Publicação excluída com sucesso!');
                 
                 this.fechar();
             }
@@ -573,10 +573,10 @@
             // Simulação do envio de e-mail
             // Em um ambiente real, isso seria uma chamada AJAX para um endpoint do servidor
             const emailData = {
-                para: 'admin@postalis.org.br',
-                assunto: `Exclusão de Artigo - ID: ${dados.id}`,
+                para: 'gabriel.talles@postalis.org.br',
+                assunto: `Exclusão de publicação - ID: ${dados.id}`,
                 corpo: `
-                    Solicitação de exclusão de artigo
+                    Solicitação de exclusão de publicação
                     ------------------------------
                     ID: ${dados.id}
                     Título: ${dados.titulo}
@@ -601,7 +601,7 @@
                 exibirArtigos(data);
             } catch (error) {
                 console.error('Erro ao carregar artigos:', error);
-                alert('Erro ao carregar a base de artigos. Por favor, tente novamente mais tarde.');
+                alert('Erro ao carregar a base de publicações. Por favor, tente novamente mais tarde.');
             }
         }
 
