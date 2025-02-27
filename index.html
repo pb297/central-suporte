@@ -320,6 +320,18 @@
             gap: 8px;
         }
 
+        .imagem-destaque {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.video-container {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
         .search-box {
             text-align: center;
             margin: 30px 0;
@@ -559,6 +571,7 @@
             <button class="dropbtn">▼</button>
             <div class="dropdown-content">
                 <a href="./notas-att.html">Atualizações</a>
+                <a href="./admin-login.html">Acesso ADMIN</a>
             </div>
         </div>
     </div>
@@ -567,8 +580,8 @@
         <!-- Coluna Esquerda -->
         <div class="sidebar">
             <div class="video-container">
-                <video controls poster="./Arquivos/Imagens/postalis.png">
-                    <source src="./Arquivos/Documentos/demandagbe.mp4" type="video/mp4">
+                <video controls poster="./Arquivos/Imagens/cap2.png">
+                    <source src="" type="video/mp4">
                     Seu navegador não suporta vídeos.
                 </video>
             </div>
@@ -705,7 +718,7 @@
             searchInput.addEventListener('input', search.handleInput);
             searchInput.addEventListener('keyup', search.clearSearch);
         } catch (error) {
-            modal.open(`<div class="alert">⚠️ Erro na base de conhecimento: ${error.message}</div>`);
+            modal.open(`<div class="alert">Erro identificado: ${error.message}</div>`);
         }
     },
 
@@ -767,10 +780,10 @@
             search.init();
             
             // Mensagem Inicial
-            modal.open(`
-                <div class="alert">
-                    O sistema atual está em desenvolvimento e aprimoramento contínuo, e, por isso, ele pode apresentar falhas ou informações incompletas. 
-                </div>
+        modal.open(`
+            <div class="alert">
+                O sistema atual está em desenvolvimento e aprimoramento contínuo, e, por isso, ele pode apresentar falhas ou informações incompletas. 
+            </div>
             `);
         });
     </script>
